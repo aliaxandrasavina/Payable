@@ -1,0 +1,73 @@
+<div class="main">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput autocomplete="off" formControlName="title" placeholder="Title" />
+    </mat-form-field>
+
+    <mat-form-field>      
+      <input matInput autocomplete="off" formControlName="duration" placeholder="Duration" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of serviceTypes" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="form.controls.type.value === 'Абонемент'">
+      <input matInput autocomplete="off" formControlName="classesQuantity" placeholder="Number of classes" />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="form.controls.type.value === 'Групповое'">
+      <input matInput autocomplete="off" formControlName="groupSize" placeholder="Number of participants" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput autocomplete="off" formControlName="price" placeholder="price" />
+    </mat-form-field>
+    <button mat-raised-button type="submit">{{ isEditing ? 'Save' : 'Add' }}</button>
+  </form>
+  <div class="services">        
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+         <th mat-header-cell *matHeaderCellDef> No. </th>
+         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+       </ng-container>
+       <ng-container matColumnDef="title">
+         <th mat-header-cell *matHeaderCellDef> Title </th>
+         <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+       </ng-container>
+       <ng-container matColumnDef="duration">
+         <th mat-header-cell *matHeaderCellDef> Duration </th>
+         <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+       </ng-container>
+       <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+      <ng-container matColumnDef="classesQuantity">
+        <th mat-header-cell *matHeaderCellDef> Classes Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.classesQuantity}} </td>
+      </ng-container>
+      <ng-container matColumnDef="groupSize">
+        <th mat-header-cell *matHeaderCellDef> Group Size </th>
+        <td mat-cell *matCellDef="let element"> {{element.groupSize}} </td>
+      </ng-container>
+       <ng-container matColumnDef="price">
+         <th mat-header-cell *matHeaderCellDef> Price </th>
+         <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+       </ng-container>
+        <ng-container matColumnDef="actions">
+         <th mat-header-cell *matHeaderCellDef> Actions </th>
+         <td mat-cell *matCellDef="let element">
+           <button mat-button (click)="remove(element.id)">Remove</button>
+           <button mat-button (click)="edit(element.id)">Edit</button>
+         </td>
+       </ng-container>   
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     </table>
+  </div>
+
+  </div>
+  

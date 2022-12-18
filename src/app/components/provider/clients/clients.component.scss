@@ -1,0 +1,36 @@
+.main {
+    padding: 20px;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    box-shadow: 0 0 4px #00000021;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: white;
+    align-items: center;
+  }
+
+  .services {
+    box-shadow: 0 0 4px #00000021;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: white;
+    .service {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0;
+      button {
+        width: 100px;
+      }
+  
+      .table {
+        font-weight: 300;
+      }
+      .cdk-header-cell {
+          font-weight: 400;
+      }
+    }
+  }

@@ -1,0 +1,58 @@
+<div class="dialog">
+    <div class="dialog-header">
+        Add Client
+    </div>
+    <div class="dialog-content">
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput autocomplete="off" formControlName="firstName" placeholder="First Name" />
+        </mat-form-field>
+        <mat-form-field>      
+          <input matInput autocomplete="off" formControlName="lastName" placeholder="Last Name" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>DOB</mat-label>
+          <input matInput formControlName="dob" autocomplete="off" [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput autocomplete="off" formControlName="email" placeholder="Email" type="email" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput autocomplete="off" formControlName="phoneNumber" placeholder="Phone Number" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Instagram Username</mat-label>
+            <input matInput autocomplete="off" formControlName="instagramUsername" placeholder="Instagram Username" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Telegram Username</mat-label>
+            <input matInput autocomplete="off" formControlName="telegramUsername" placeholder="Telegram Username" />
+        </mat-form-field>
+        <!-- <div formArrayName="appointments">
+            <span>Appointments</span>
+            <div [formGroupName]="i" *ngFor="let appt of appointmentsFormGroups; let i = index">
+                <input matInput formControlName="title" />
+                <input matInput formControlName="start" />
+            </div>
+            <button type="button" (click)="addAppointment()">Add Appointment</button>
+            
+        </div> -->
+      </form>
+    </div>
+    <div class="dialog-footer">
+      <button mat-button (click)="close()">Cancel</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="form.value">Save</button>
+    </div>
+</div>
